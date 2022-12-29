@@ -1,7 +1,6 @@
 const routes = require('express').Router();
+const dataController = require('../controllers');
 
-routes.get('/', (req, res) => {
-    res.send('Adam Ulrich');
-})
+routes.get('/', dataController.displayData);
 
 module.exports = routes;
