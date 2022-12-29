@@ -1,0 +1,9 @@
+
+//render
+### test render endpoint
+GET https://adamu341test.onrender.com
+
+
+// localhost
+### test local host endpoint
+GET http://localhost:3000
