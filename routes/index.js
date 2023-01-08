@@ -1,6 +1,6 @@
-const routes = require('express').Router();
+const router = require('express').Router();
 const dataController = require('../controllers');
 
-routes.get('/', dataController.displayData);
+router.get('/', dataController.displayData);
 
-module.exports = routes;
+module.exports = router;
