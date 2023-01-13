@@ -1,5 +1,5 @@
 const express = require('express')
-//const { MongoClient } = require('mongodb');
+// const { MongoClient } = require('mongodb');
 const mongoDB = require('./dbconnect');
 
 require('dotenv').config();
@@ -9,13 +9,9 @@ const port = process.env.PORT
 const app = express()
 app.use('/',require('./routes'))
 
-mongoDB.initDB((err, mongoDB) => {
-    if (err) {
-        console.log(err);
-    } else {
-        app.listen(port, () => {
-            console.log(`Successfully connected to MongoDB; app listening on port ${port}`)
-        })
+mongoDB.initDB();
+
+app.listen(port, () => {
+    console.log(`Successfully connected to MongoDB; app listening on port ${port}`)
+})
             
-    }
-} )
