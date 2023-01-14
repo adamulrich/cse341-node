@@ -10,6 +10,8 @@ mongoDB.initDB();
 //express
 const express = require('express')
 const app = express();
+
+//routes
 app.use('/', require('./routes/index'));
 app.use('/contacts', require('./routes/contacts'));
 

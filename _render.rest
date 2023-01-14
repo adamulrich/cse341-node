@@ -1,0 +1,12 @@
+
+//render
+### test render endpoint
+GET https://adamu341test.onrender.com
+
+//render
+### test render endpoint - all contacts
+GET https://adamu341test.onrender.com/contacts
+
+//render
+### test render endpoint - 1 contact
+GET https://adamu341test.onrender.com/contacts/63ae52cb777e3b25663af5f0
