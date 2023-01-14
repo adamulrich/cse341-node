@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const dataController = require('../controllers');
+const dataController = require('../controllers/index');
 
-router.get('/', dataController.returnData);
+router.get('/', dataController.getData);
 
 module.exports = router;

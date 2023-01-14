@@ -1,9 +1,8 @@
-const mongoDB = require('../dbconnect');
 
-async function returnData(req, res) {
+function getData(req, res) {
 
     //get data
-    const return_value = await getData();
+    const return_value = "Rylan Ulrich"
     //return data
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -13,11 +12,4 @@ async function returnData(req, res) {
     res.status(200).send(return_value);
 }
 
-async function getData() {
-    
-    const dbo = mongoDB.getDB().db("Contacts");
-    const returnValue = await dbo.collection("contacts").find({}).toArray();
-    return returnValue;
-}
-
-module.exports = { returnData, getData };
+module.exports = { getData };

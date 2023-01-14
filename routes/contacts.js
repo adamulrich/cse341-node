@@ -2,3 +2,11 @@
 
 
 // Create another GET request in your contacts route file that will return a single document from your contacts collection where an id matches the id from a query parameter.
+
+const router = require('express').Router();
+const dataController = require('../controllers/contacts');
+
+router.get('/', dataController.getContacts);
+router.get('/:id', dataController.getContact);
+
+module.exports = router;
