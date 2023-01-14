@@ -3,6 +3,10 @@
 ### test render endpoint
 GET https://adamu341test.onrender.com
 
+//render
+### test render endpoint
+GET https://adamu341test.onrender.com/contacts
+
 
 // localhost
 ### test local host endpoint
