@@ -2,6 +2,7 @@
 const { MongoClient } = require('mongodb');
 require('dotenv').config();
 const connectionString = process.env.MONGO_CONNECT_STRING;
+console.log(process.env.MONGO_CONNECT_STRING);
 
 let mongoDB = null;
 
