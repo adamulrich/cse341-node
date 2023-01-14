@@ -1,10 +1,20 @@
-const express = require('express')
-const app = express()
+// env
 require('dotenv').config();
-const port = process.env.PORT
+const connectionString = process.env.MONGO_CONNECT_STRING;
+const port = process.env.PORT;
 
-app.use('/',require('./routes'))
+// mongoDB
+const mongoDB = require('./dbconnect');
+mongoDB.initDB();
 
+//express
+const express = require('express')
+const app = express();
+app.use('/', require('./routes/index'));
+app.use('/contacts', require('./routes/contacts'));
+
+//start
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Successfully connected to MongoDB; app listening on port ${port}`)
 })
+            

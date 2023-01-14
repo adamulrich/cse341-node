@@ -1,6 +1,15 @@
-displayData = (req, res) => {
-    const data_string = "Rylan Ulrich, this is temporary data until we create data in a database like mongo.";
-    res.status(200).send(data_string);
+
+function getData(req, res) {
+
+    //get data
+    const return_value = "Rylan Ulrich"
+    //return data
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    res.status(200).send(return_value);
 }
 
-module.exports = { displayData };
+module.exports = { getData };

@@ -7,3 +7,11 @@ GET https://adamu341test.onrender.com
 // localhost
 ### test local host endpoint
 GET http://localhost:3000
+
+// localhost
+### test local host endpoint
+GET http://localhost:3000/contacts 
+
+// localhost
+### test local host endpoint
+GET http://localhost:3000/contacts/63ae52cb777e3b25663af5f0
