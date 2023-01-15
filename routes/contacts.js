@@ -8,5 +8,8 @@ const dataController = require('../controllers/contacts');
 
 router.get('/', dataController.getContacts);
 router.get('/:id', dataController.getContact);
+router.post('/', dataController.createNewContact);
+router.put("/:id", dataController.updateContact);
+router.delete("/:id", dataController.deleteContact);
 
 module.exports = router;

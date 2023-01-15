@@ -2,7 +2,7 @@
 function getData(req, res) {
 
     //get data
-    const return_value = "Rylan Ulrich"
+    const return_value = "heartbeat."
     //return data
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');

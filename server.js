@@ -12,8 +12,10 @@ const express = require('express')
 const app = express();
 
 //routes
+app.use(express.json());
 app.use('/', require('./routes/index'));
 app.use('/contacts', require('./routes/contacts'));
+
 
 //start
 app.listen(port, () => {

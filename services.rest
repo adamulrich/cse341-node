@@ -1,0 +1,47 @@
+// localhost
+@hostname = localhost:3000
+# @hostname = adamu341test.onrender.com
+
+@querycontact = 63ae52cb777e3b25663af5f0
+@createupdatedeletecontact = 63c492c110eca5ceec1469c9
+
+### service heartbeat
+GET http://{{hostname}}
+
+
+### return all contacts
+GET http://{{hostname}}/contacts 
+
+
+### return specific contact
+GET http://{{hostname}}/contacts/{{querycontact}}
+
+
+### add new contact, returns contactid
+POST http://{{hostname}}/contacts HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Aaron",
+    "lastName": "Ulrich",
+    "email": "aaronu98030@msn.com",
+    "favoriteColor": "brown",
+    "birthday": "9/16/1989"
+}
+
+
+### update/replace contact info
+PUT http://{{hostname}}/contacts/{{createupdatedeletecontact}} HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Aaron",
+    "lastName": "Ulrich",
+    "email": "foo@bar.com",
+    "favoriteColor": "black",
+    "birthday": "9/16/1989"
+}
+
+### test local host endpoint
+DELETE http://{{hostname}}/contacts/{{createupdatedeletecontact}} HTTP/1.1
+
