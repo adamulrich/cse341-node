@@ -42,6 +42,6 @@ Content-Type: application/json
     "birthday": "9/16/1989"
 }
 
-### test local host endpoint
+### delete contact
 DELETE http://{{hostname}}/contacts/{{createupdatedeletecontact}} HTTP/1.1
 
