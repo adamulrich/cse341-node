@@ -1,42 +1,41 @@
 const mongoDB = require('../dbconnect');
 const ObjectId = require('mongodb').ObjectId;
 
+
+// gets all contacts from database
 async function getContacts(req, res) {
 
     //get data
-    const return_value = await getContactsFromDB();
-    //return data
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.status(200).send(return_value);
+    const dbo = mongoDB.getDB().db("Contacts");
+    const result = await dbo.collection("contacts").find({}).toArray();
+    setHeaders(res);
+    res.status(200).send(result);
 }
 
+
+// gets one contact from database depending on id provided
 async function getContact(req, res) {
 
     //get id from request object
     const userId = new ObjectId(req.params.id);
-    console.log(userId);
     
     //get data
-    const return_value = await getContactFromDB(userId);
-
-    //return data
-    res.setHeader('Content-Type', 'application/json');
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.status(200).send(return_value);
+    const dbo = mongoDB.getDB().db("Contacts");
+    dbo.collection("contacts").findOne({ _id: userId }, (err, result) => {
+        if (err) 
+          return err;
+        else 
+            //return data
+            setHeaders(res);
+            res.status(200).send(result);
+    });
 }
 
+// creates a new contact with the data provided
 async function createNewContact(req, res) {
 
     //get new contact data from request object
     const newUser = req.body;
-    console.log(newUser);
 
     // create user in database
     const db = mongoDB.getDB().db("Contacts");
@@ -44,14 +43,9 @@ async function createNewContact(req, res) {
         if (err) 
           return err;
         else 
-            res.setHeader('Content-Type', 'application/json');
-            res.setHeader('Access-Control-Allow-Origin', '*');
-            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-            res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-            res.setHeader('Access-Control-Allow-Credentials', true);
+            setHeaders(res);
             res.status(201).send(result);
-        
-      });
+    });
 
     //return data
 }
@@ -62,21 +56,14 @@ async function getContactsFromDB() {
     return returnValue;
 }
 
-async function getContactFromDB(userID) {
-    const dbo = mongoDB.getDB().db("Contacts");
-    const returnValue = await dbo.collection("contacts").find({ _id: userID }).toArray();
-    return returnValue;
-}
-
+// replaces a contact based on the id provided
 async function updateContact(req, res) {
 
     //get id from request object
     const userId = new ObjectId(req.params.id);
-    console.log(userId);
     
     //get new contact data from request object
     const updatedUser = req.body;
-    console.log(updatedUser);
 
     //update contact
     const db = mongoDB.getDB().db("Contacts");
@@ -84,22 +71,18 @@ async function updateContact(req, res) {
         if (err) 
           return err;
         else 
-
             //return data
-            res.setHeader('Content-Type', 'application/json');
-            res.setHeader('Access-Control-Allow-Origin', '*');
-            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-            res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-            res.setHeader('Access-Control-Allow-Credentials', true);
+            setHeaders(res);
             res.status(204).send('');
     });
 }
 
+
+// deletes a contact based on the id provided
 async function deleteContact(req, res) {
 
     //get id from request object
     const userId = new ObjectId(req.params.id);
-    console.log(userId);
     
     //update contact
     const db = mongoDB.getDB().db("Contacts");
@@ -107,15 +90,21 @@ async function deleteContact(req, res) {
         if (err) 
           return err;
         else 
-
             //return data
-            res.setHeader('Content-Type', 'application/json');
-            res.setHeader('Access-Control-Allow-Origin', '*');
-            res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-            res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-            res.setHeader('Access-Control-Allow-Credentials', true);
+            setHeaders(res);
             res.status(200).send('');
     });
+}
+
+
+// sets the headers for the response
+function setHeaders(res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+    
 }
 
 module.exports = { getContacts, getContact, createNewContact, updateContact, deleteContact };

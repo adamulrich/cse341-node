@@ -19,6 +19,6 @@ app.use('/contacts', require('./routes/contacts'));
 
 //start
 app.listen(port, () => {
-    console.log(`Successfully connected to MongoDB; app listening on port ${port}`)
+    console.log(`App listening on port ${port}`)
 })
             

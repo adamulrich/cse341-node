@@ -13,7 +13,7 @@ async function initDB(){
     try {
         // Connect to the MongoDB cluster
         await client.connect();
-        console.log("connected")
+        console.log("connection to DB confirmed.")
         // Make the appropriate DB calls
         mongoDB = client;
  

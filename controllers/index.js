@@ -4,7 +4,7 @@ function getData(req, res) {
     //get data
     const return_value = "heartbeat."
     //return data
-    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Type', 'text/css');
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
