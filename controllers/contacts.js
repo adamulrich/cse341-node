@@ -50,12 +50,6 @@ async function createNewContact(req, res) {
     //return data
 }
 
-async function getContactsFromDB() {    
-    const dbo = mongoDB.getDB().db("Contacts");
-    const returnValue = await dbo.collection("contacts").find({}).toArray();
-    return returnValue;
-}
-
 // replaces a contact based on the id provided
 async function updateContact(req, res) {
 
