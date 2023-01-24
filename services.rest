@@ -3,7 +3,7 @@
 # @hostname = adamu341test.onrender.com
 
 @querycontact = 63ae52cb777e3b25663af5f0
-@createupdatedeletecontact = 63cb644a347b39b572165dd5
+@createupdatedeletecontact = 63cf94b9490f4bd6381e18c2
 
 ### service heartbeat
 GET http://{{hostname}}
