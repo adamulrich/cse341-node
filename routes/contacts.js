@@ -105,9 +105,55 @@ router.get('/:id', dataController.getContact);
  */
 router.post('/', dataController.createNewContact);
 
+/**
+ * @swagger
+ * /contacts/{id}:
+ *  put:
+ *      summary: replaced a contact in the mongoDB.
+ *      description: replaces a contact in the mongoDB.
+  *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true
+ *            description: guid required
+ *            schema:
+ *              type: string
+ *      requestBody:
+ *          required: true
+ *          content:
+ *              application/json:
+ *                  schema:
+ *                      type: object
 
+  *      responses:
+ *          204:
+ *              description: OK. 
+ *              content:
+ *                  text/css:
+ *                      type: string
+ */ 
 router.put("/:id", dataController.updateContact);
 
+/**
+ * @swagger
+ * /contacts/{id}:
+ *  delete:
+ *      summary: returns a contact based on id.
+ *      description: returns a contact based on id.
+ *      parameters:
+ *          - in: path
+ *            name: id
+ *            required: true
+ *            description: guid required
+ *            schema:
+ *              type: string
+ *      responses:
+ *          200:
+ *              description: OK. 
+ *              content:
+ *                  text/css:
+ *                      type: string
+ */ 
 router.delete("/:id", dataController.deleteContact);
 
 module.exports = router;
