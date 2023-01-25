@@ -2,8 +2,7 @@
 require('dotenv').config();
 const connectionString = process.env.MONGO_CONNECT_STRING;
 const port = process.env.PORT;
-// const swaggerJSDoc = require("swagger-jsdoc");
-// const swaggerUI = require("swagger-ui-express");
+const swaggerUI = require("swagger-ui-express");
 
 // mongoDB
 const mongoDB = require('./dbconnect');
@@ -27,7 +26,6 @@ const options = {
         ]
 }
 
-// const swaggerSpec = swaggerJSDoc(options);
 
 
 //express
