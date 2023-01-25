@@ -41,23 +41,16 @@ const dataController = require('../controllers/contacts');
  */
 
 
-/**
- * @swagger
- * /contacts:
- *  get:
- *      summary: This api returns all the contacts in the mongoDB.
- *      description: This api returns all the contacts in the mongoDB.
- *      responses:
- *          200:
- *              description: contacts json
- *              content:
- *                  application/json:
- *                      schema:
- *                          type: array
- *                          items:
- *                              $ref: '#components/schemas/contact'
- */
-router.get('/', dataController.getContacts);
+ 
+router.get('/',
+    // #swagger.summary = 'returns all the contacts in the mongoDB'
+    // #swagger.description = 'returns all the contacts in the mongoDB'
+    /* #swagger.responses[200] = {
+            description: 'contacts json',
+             }
+    }
+    */
+    dataController.getContacts);
 
 /**
  * @swagger

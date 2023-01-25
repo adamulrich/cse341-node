@@ -18,7 +18,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
+const swaggerSpec = require('./swagger-output.json');
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 app.use('/', require('./routes/index'));
 app.use('/contacts', require('./routes/contacts'));
