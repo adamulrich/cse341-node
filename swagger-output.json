@@ -38,67 +38,174 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "contacts json"
+            "description": "contacts json",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/contact"
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
           }
         }
       },
       "post": {
-        "description": "",
-        "parameters": [],
+        "summary": "creates a contact in the db",
+        "description": "creates a contact in the db",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Add a user",
+            "schema": {
+              "$ref": "#/definitions/newContact"
+            }
+          }
+        ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/insertionSuccess"
+            }
           }
         }
       }
     },
     "/contacts/{id}": {
       "get": {
-        "description": "",
+        "summary": "returns a contact from the db based on ID.",
+        "description": "returns a contact from the db based on ID.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Contact Id"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "contacts json",
+            "schema": {
+              "$ref": "#/definitions/contact"
+            }
           }
         }
       },
       "put": {
-        "description": "",
+        "summary": "replaces a contact in the db based on ID",
+        "description": "replaces a contact in the db based on ID",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Replace contact info",
+            "schema": {
+              "$ref": "#/definitions/newContact"
+            }
           }
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "OK"
           }
         }
       },
       "delete": {
-        "description": "",
+        "summary": "deletes a contact from the db based on ID.",
+        "description": "deletes a contact from the db based on ID.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "Contact Id"
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
           }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "newContact": {
+      "type": "object",
+      "properties": {
+        "lastName": {
+          "type": "string",
+          "example": "Bar"
+        },
+        "firstName": {
+          "type": "string",
+          "example": "Foo"
+        },
+        "email": {
+          "type": "string",
+          "example": "foo@bar.org"
+        },
+        "favoriteColor": {
+          "type": "string",
+          "example": "paisley"
+        },
+        "birthday": {
+          "type": "string",
+          "example": "01/01/2000"
+        }
+      }
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "example": ""
+        },
+        "lastName": {
+          "type": "string",
+          "example": "Bar"
+        },
+        "firstName": {
+          "type": "string",
+          "example": "Foo"
+        },
+        "email": {
+          "type": "string",
+          "example": "foo@bar.org"
+        },
+        "favoriteColor": {
+          "type": "string",
+          "example": "paisley"
+        },
+        "birthday": {
+          "type": "string",
+          "example": "01/01/2000"
+        }
+      }
+    },
+    "insertionSuccess": {
+      "type": "object",
+      "properties": {
+        "acknowledged": {
+          "type": "boolean",
+          "example": true
+        },
+        "insertedId": {
+          "type": "string",
+          "example": "<24 char guid>"
         }
       }
     }

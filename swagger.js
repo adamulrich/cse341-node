@@ -20,7 +20,29 @@ const doc = {
   ],
   securityDefinitions: {},  // by default: empty object
   definitions: {},          // by default: empty object (Swagger 2.0)
-  components: {}            // by default: empty object (OpenAPI 3.x)
+  components: {},            // by default: empty object (OpenAPI 3.x)
+  definitions: {
+    newContact: {
+      lastName: 'Bar',
+      firstName: 'Foo',
+      email: 'foo@bar.org',
+      favoriteColor: 'paisley',
+      birthday: '01/01/2000'
+    },
+    contact: {
+      _id: '',
+      lastName: 'Bar',
+      firstName: 'Foo',
+      email: 'foo@bar.org',
+      favoriteColor: 'paisley',
+      birthday: '01/01/2000'
+    },
+    insertionSuccess: {
+      acknowledged: true,
+      insertedId: "<24 char guid>"
+    }
+
+  }
 };
 
 const outputFile = './swagger-output.json';

@@ -6,147 +6,70 @@
 const router = require('express').Router();
 const dataController = require('../controllers/contacts');
 
-/**
- * @swagger
- *  components:
- *      schemas:
- *          newContact:
- *              type: object
- *              properties:
- *                  firstName: 
- *                      type: string
- *                  lastName: 
- *                      type: string
- *                  email: 
- *                      type: string
- *                  favoriteColor: 
- *                      type: string
- *                  birthday: 
- *                      type: string
- *          contact:
- *              type: object
- *              properties:
- *                  _id:
- *                      type: string
- *                  firstName: 
- *                      type: string
- *                  lastName: 
- *                      type: string
- *                  email: 
- *                      type: string
- *                  favoriteColor: 
- *                      type: string
- *                  birthday: 
- *                      type: string
- */
-
-
- 
 router.get('/',
     // #swagger.summary = 'returns all the contacts in the mongoDB'
     // #swagger.description = 'returns all the contacts in the mongoDB'
     /* #swagger.responses[200] = {
             description: 'contacts json',
+            schema: [{ $ref: '#/definitions/contact' }]
              }
     }
     */
     dataController.getContacts);
 
-/**
- * @swagger
- * /contacts/{id}:
- *  get:
- *      summary: returns a contact based on id.
- *      description: returns a contact based on id.
- *      parameters:
- *          - in: path
- *            name: id
- *            required: true
- *            description: guid required
- *            schema:
- *              type: string
- *      responses:
- *          200:
- *              description: contact json
- *              content:
- *                  application/json:
- *                      schema:
- *                          type: object
- *                          $ref: '#components/schemas/contact'
- */
-router.get('/:id', dataController.getContact);
+router.get('/:id', 
+    // #swagger.summary = 'returns a contact from the db based on ID.'
+    // #swagger.description = 'returns a contact from the db based on ID.'
+    // #swagger.parameters['id'] = { description: 'Contact Id' }
+    /* #swagger.responses[200] = {
+            description: 'contacts json',
+            schema: { $ref: '#/definitions/contact' }
+             }
+    }
+    */
+    dataController.getContact);
 
-/**
- * @swagger
- * /contacts:
- *  post:
- *      summary: creates a contact in the mongoDB.
- *      description: creates a contact in the mongoDB.
- *      requestBody:
- *          required: true
- *          content:
- *              application/json:
- *                  schema:
- *                      type: object
-  *      responses:
- *          201:
- *              description: none
- *              content:
- *                  application/json:
- *                      schema:
- *                          $ref: '#components/schemas/newContact'
- */
-router.post('/', dataController.createNewContact);
+router.post('/', 
+    // #swagger.summary = 'creates a contact in the db'
+    // #swagger.description = 'creates a contact in the db'
+    /* #swagger.responses[201] = {
+            description: 'OK',
+            schema: { $ref: '#definitions/insertionSuccess' }
+             }
+    }
+    */
+    /*  #swagger.parameters['obj'] = {
+                in: 'body',
+                description: 'Add a user',
+                schema: { $ref: '#/definitions/newContact' }
+        } */
+    dataController.createNewContact);
 
-/**
- * @swagger
- * /contacts/{id}:
- *  put:
- *      summary: replaced a contact in the mongoDB.
- *      description: replaces a contact in the mongoDB.
-  *      parameters:
- *          - in: path
- *            name: id
- *            required: true
- *            description: guid required
- *            schema:
- *              type: string
- *      requestBody:
- *          required: true
- *          content:
- *              application/json:
- *                  schema:
- *                      type: object
+router.put("/:id", 
+    // #swagger.summary = 'replaces a contact in the db based on ID'
+    // #swagger.description = 'replaces a contact in the db based on ID'
+    /* #swagger.responses[204] = {
+            description: 'OK',
+             }
+    }
+    */
+    /*  #swagger.parameters['obj'] = {
+                in: 'body',
+                description: 'Replace contact info',
+                schema: { $ref: '#/definitions/newContact' }
+        } */
 
-  *      responses:
- *          204:
- *              description: OK. 
- *              content:
- *                  text/css:
- *                      type: string
- */ 
-router.put("/:id", dataController.updateContact);
+    dataController.updateContact);
 
-/**
- * @swagger
- * /contacts/{id}:
- *  delete:
- *      summary: returns a contact based on id.
- *      description: returns a contact based on id.
- *      parameters:
- *          - in: path
- *            name: id
- *            required: true
- *            description: guid required
- *            schema:
- *              type: string
- *      responses:
- *          200:
- *              description: OK. 
- *              content:
- *                  text/css:
- *                      type: string
- */ 
-router.delete("/:id", dataController.deleteContact);
+router.delete("/:id", 
+    // #swagger.summary = 'deletes a contact from the db based on ID.'
+    // #swagger.description = 'deletes a contact from the db based on ID.'
+    // #swagger.parameters['id'] = { description: 'Contact Id' }
+    /* #swagger.responses[200] = {
+            description: 'OK',
+             }
+    }
+    */
+    dataController.deleteContact);
 
 module.exports = router;
