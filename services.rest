@@ -1,9 +1,9 @@
 // localhost
-@hostname = localhost:3000
-# @hostname = adamu341test.onrender.com
+# @hostname = localhost:3000
+@hostname = adamu341test.onrender.com
 
 @querycontact = 63ae52cb777e3b25663af5f0
-@createupdatedeletecontact = 63d0803d062e0dae620e288a
+@createupdatedeletecontact = 63d090e00a17833f6a07cb56
 
 ### service heartbeat
 GET http://{{hostname}}
