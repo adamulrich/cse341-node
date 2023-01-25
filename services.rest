@@ -1,6 +1,6 @@
 // localhost
-# @hostname = localhost:3000
-@hostname = adamu341test.onrender.com
+@hostname = localhost:3000
+# @hostname = adamu341test.onrender.com
 
 @querycontact = 63ae52cb777e3b25663af5f0
 @createupdatedeletecontact = 63d090e00a17833f6a07cb56
