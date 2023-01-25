@@ -36,10 +36,11 @@ const express = require('express')
 const app = express();
 
 //routes
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
 app.use(express.json());
 app.use('/', require('./routes/index'));
 app.use('/contacts', require('./routes/contacts'));
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
+
 
 
 //start
