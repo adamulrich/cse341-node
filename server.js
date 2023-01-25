@@ -4,6 +4,7 @@ const connectionString = process.env.MONGO_CONNECT_STRING;
 const port = process.env.PORT;
 const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUI = require("swagger-ui-express");
+const swaggerAutoGen = require("swagger-autogen");
 
 // mongoDB
 const mongoDB = require('./dbconnect');
@@ -27,7 +28,7 @@ const options = {
         ]
 }
 
-const swaggerSpec = swaggerJSDoc(options);
+const swaggerSpec = require('./swagger-output.json');
 
 
 //express
