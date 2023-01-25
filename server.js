@@ -3,6 +3,8 @@ require('dotenv').config();
 const connectionString = process.env.MONGO_CONNECT_STRING;
 const port = process.env.PORT;
 const swaggerUI = require("swagger-ui-express");
+const swaggerAutogen = require("swagger-autogen");
+const cors = require('cors')
 
 // mongoDB
 const mongoDB = require('./dbconnect');
@@ -13,7 +15,11 @@ const express = require('express')
 const app = express();
 
 //routes
+app.use(cors());
 app.use(express.json());
+
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
+
 app.use('/', require('./routes/index'));
 app.use('/contacts', require('./routes/contacts'));
 app.use((req, res, next) => {
@@ -23,7 +29,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Z-Key');
     res.setHeader('Access-Control-Allow-Credentials', true);
 })
-// app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec))
+
 
 
 //start
