@@ -2,7 +2,7 @@
 require('dotenv').config();
 const connectionString = process.env.MONGO_CONNECT_STRING;
 const port = process.env.PORT;
-const swaggerUI = require("swagger-ui-express");
+const swaggerUIExpress = require("swagger-ui-express");
 const swaggerAutogen = require("swagger-autogen");
 const cors = require('cors')
 
@@ -18,8 +18,21 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+var options = {
+	validatorUrl : "http://localhost:3000/login",
+	oauth: {
+	 clientId: process.env.clientId,
+     clientSecret: process.env.clientSecret,
+     realm: "",
+     appName: "Heroes",
+     scopeSeparator: " ",
+     scopes: "write",
+     additionalQueryStringParams: {test: "Hello!"},
+    }
+};
+
 const swaggerSpec = require('./swagger-output.json');
-app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+app.use('/api-docs', swaggerUIExpress.serve, swaggerUIExpress.setup(swaggerSpec, false, options));
 
 app.use('/', require('./routes/index'));
 app.use('/contacts', require('./routes/contacts'));

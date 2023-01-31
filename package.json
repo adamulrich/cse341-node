@@ -4,8 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "nodemon server.js",
+    "test": "node ./swagger.js && nodemon server.js",
     "start": "node server.js",
+    "build": "npm install && node ./swagger.js",
     "swagger-autogen": "node ./swagger.js"
   },
   "repository": {
@@ -26,6 +27,7 @@
     "mongodb": "^4.13.0",
     "nodemon": "^2.0.20",
     "swagger-autogen": "^2.22.0",
-    "swagger-ui-express": "^4.6.0"
+    "swagger-ui-express": "^4.6.0",
+    "swagger-ui-express-oauth2": "^2.0.0"
   }
 }
